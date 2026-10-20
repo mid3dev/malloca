@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Mallorcar Club Narok — apply for open positions. Butcher, bartenders, waiters, security, DJs and more. New club opening in Narok." />
+<title>Mallorcar — Careers | Narok's Newest Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08070d;--surface:rgba(255,255,255,.045);--surface-2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.09);--border-strong:rgba(255,255,255,.16);
+  --gold:#e3b04b;--gold-soft:#f6d68f;--gold-dim:rgba(227,176,75,.14);
+  --text:#f5f3ef;--muted:#a09cae;--green:#34d399;--red:#f87171;
+  --radius:18px;--radius-sm:12px;--shadow:0 24px 60px -20px rgba(0,0,0,.75);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  background:
+    radial-gradient(900px 600px at 12% -8%, rgba(124,58,237,.20), transparent 60%),
+    radial-gradient(800px 600px at 92% 8%, rgba(227,176,75,.12), transparent 62%),
+    var(--bg);
+  color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit;width:100%}
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+.gold{color:var(--gold)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  padding:.85rem 1.6rem;border-radius:999px;font-weight:600;font-size:.95rem;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s, border-color .25s, color .25s;
+  white-space:nowrap;border:1px solid transparent;}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#1a1205;box-shadow:0 10px 28px -10px rgba(227,176,75,.7);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px -10px rgba(227,176,75,.85)}
+.btn-gold:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;filter:grayscale(.35)}
+.btn-ghost{background:var(--surface);border-color:var(--border-strong);color:var(--text);backdrop-filter:blur(8px);}
+.btn-ghost:hover{background:var(--surface-2);border-color:var(--gold);color:var(--gold-soft);transform:translateY(-2px)}
+.btn-sm{padding:.6rem 1.15rem;font-size:.85rem}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .35s, border-color .35s, backdrop-filter .35s;border-bottom:1px solid transparent;}
+.nav.scrolled{background:rgba(8,7,13,.82);backdrop-filter:blur(16px) saturate(160%);border-bottom-color:var(--border);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:.7rem;font-weight:700}
+.brand-mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#1a1205;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.05em;box-shadow:0 8px 22px -8px rgba(227,176,75,.8);}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase}
+.brand-text small{font-size:.62rem;letter-spacing:.34em;color:var(--muted);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a:not(.btn){font-size:.9rem;font-weight:500;color:var(--muted);position:relative;transition:color .25s;}
+.nav-links a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--gold);border-radius:2px;transition:width .3s var(--ease);}
+.nav-links a:not(.btn):hover{color:var(--text)}
+.nav-links a:not(.btn):hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;padding:10px;border-radius:10px;border:1px solid var(--border)}
+.burger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.hero{position:relative;padding:150px 0 90px;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.g1{width:540px;height:540px;background:#7c3aed;opacity:.30;top:-180px;left:-160px}
+.g2{width:480px;height:480px;background:var(--gold);opacity:.18;bottom:-220px;right:-140px}
+.hero-inner{position:relative;z-index:2;max-width:820px}
+.pill{display:inline-flex;align-items:center;gap:.55rem;padding:.45rem 1rem;border-radius:999px;font-size:.78rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;background:var(--gold-dim);border:1px solid rgba(227,176,75,.32);color:var(--gold-soft);margin-bottom:1.6rem;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(52,211,153,.16);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(2.9rem,7.2vw,5.4rem);line-height:.95;letter-spacing:.02em;margin-bottom:1.4rem;}
+.hero h1 .gold{background:linear-gradient(135deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .lead{font-size:clamp(1rem,2.1vw,1.14rem);color:var(--muted);max-width:600px;margin-bottom:2.2rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3.4rem}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:560px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.1rem 1.2rem;backdrop-filter:blur(8px);}
+.stat strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.85rem;line-height:1;color:var(--gold-soft);letter-spacing:.03em}
+.stat span{font-size:.76rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+section{scroll-margin-top:90px}
+.section{padding:96px 0}
+.section-head{max-width:640px;margin-bottom:3rem}
+.eyebrow{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.9rem;display:block;}
+.section-head h2{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(2.1rem,4.4vw,3.1rem);line-height:1.02;letter-spacing:.02em;margin-bottom:.9rem;}
+.section-head p{color:var(--muted);font-size:1rem}
+
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.6rem;transition:transform .35s var(--ease),border-color .35s,background .35s;position:relative;overflow:hidden;}
+.feature::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(300px 140px at 50% 0%,rgba(227,176,75,.14),transparent 70%);opacity:0;transition:opacity .35s;}
+.feature:hover{transform:translateY(-5px);border-color:rgba(227,176,75,.35);background:var(--surface-2)}
+.feature:hover::before{opacity:1}
+.feature .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--gold-dim);border:1px solid rgba(227,176,75,.26);font-size:1.25rem;margin-bottom:1.1rem;position:relative;}
+.feature h3{font-size:1.06rem;font-weight:600;margin-bottom:.5rem;position:relative}
+.feature p{font-size:.9rem;color:var(--muted);position:relative}
+
+.pos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:1.1rem}
+.pos-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;}
+.pos-card:hover{transform:translateY(-6px);border-color:rgba(227,176,75,.38);box-shadow:var(--shadow);}
+.pos-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.pos-card h3{font-size:1.15rem;font-weight:600;line-height:1.25}
+.tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.3rem .65rem;border-radius:999px;white-space:nowrap;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);color:#c4b5fd;}
+.pos-card p{font-size:.89rem;color:var(--muted);flex:1}
+.pos-meta{display:flex;flex-wrap:wrap;gap:.5rem;font-size:.76rem;color:var(--muted)}
+.pos-meta span{padding:.28rem .6rem;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--border);}
+.pos-card .btn{margin-top:.35rem;width:100%}
+
+.apply-wrap{max-width:840px;margin:0 auto}
+.form-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.028));border:1px solid var(--border);border-radius:24px;padding:2.2rem;box-shadow:var(--shadow);backdrop-filter:blur(14px);}
+.fee-notice{display:flex;gap:.8rem;align-items:flex-start;background:var(--gold-dim);border:1px solid rgba(227,176,75,.28);border-radius:var(--radius-sm);padding:1rem 1.1rem;margin-bottom:2rem;font-size:.86rem;color:var(--gold-soft);line-height:1.55;}
+.fee-notice b{color:var(--gold-soft)}
+.fee-notice a{color:var(--gold-soft);text-decoration:underline;font-weight:600}
+
+.stepper{display:flex;align-items:center;margin-bottom:2.4rem;gap:.4rem}
+.step{display:flex;align-items:center;gap:.6rem;flex:1}
+.step:last-child{flex:0}
+.step-num{width:32px;height:32px;flex:0 0 32px;border-radius:50%;display:grid;place-items:center;font-size:.82rem;font-weight:700;background:rgba(255,255,255,.06);border:1px solid var(--border-strong);color:var(--muted);transition:.35s var(--ease);}
+.step-label{font-size:.8rem;color:var(--muted);font-weight:500;white-space:nowrap;transition:color .35s}
+.step-line{flex:1;height:1px;background:var(--border-strong);margin:0 .5rem;transition:background .35s}
+.step.active .step-num{background:linear-gradient(135deg,var(--gold-soft),var(--gold));border-color:transparent;color:#1a1205;box-shadow:0 0 0 5px rgba(227,176,75,.13)}
+.step.active .step-label{color:var(--text)}
+.step.done .step-num{background:rgba(52,211,153,.16);border-color:rgba(52,211,153,.45);color:var(--green)}
+.step.done + .step .step-line,.step.done .step-line{background:rgba(52,211,153,.4)}
+
+.step-panel{display:none;animation:fadeUp .4s var(--ease)}
+.step-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:flex;flex-direction:column;gap:.42rem;margin-bottom:1.1rem}
+.field label{font-size:.82rem;font-weight:500;color:var(--muted);letter-spacing:.02em}
+.field label .req{color:var(--gold)}
+.field input,.field select,.field textarea{background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.82rem 1rem;font-size:.94rem;color:var(--text);transition:border-color .25s,background .25s,box-shadow .25s;outline:none;-webkit-appearance:none;appearance:none;}
+.field textarea{resize:vertical;min-height:104px;line-height:1.55}
+.field select{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a09cae' stroke-width='2' stroke-linecap='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 1rem center;background-size:16px;padding-right:2.6rem;}
+.field select option{background:#14131c;color:var(--text)}
+.field input::placeholder,.field textarea::placeholder{color:#6b6779}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(227,176,75,.12);}
+.field input.invalid,.field select.invalid,.field textarea.invalid{border-color:var(--red);box-shadow:0 0 0 4px rgba(248,113,113,.1);}
+.err{font-size:.76rem;color:var(--red);min-height:0;line-height:1.35}
+.err:empty{display:none}
+
+.file-drop{border:1.5px dashed var(--border-strong);border-radius:var(--radius-sm);padding:1.3rem;text-align:center;font-size:.86rem;color:var(--muted);transition:border-color .25s,background .25s;position:relative;cursor:pointer;}
+.file-drop:hover{border-color:var(--gold);background:rgba(227,176,75,.05)}
+.file-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file-drop strong{color:var(--gold-soft);font-weight:600}
+
+.step-nav{display:flex;gap:.8rem;justify-content:space-between;margin-top:1.8rem;flex-wrap:wrap}
+.step-nav .btn-gold{margin-left:auto}
+
+.pay-box{background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.4rem;}
+.pay-row{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;font-size:.92rem;color:var(--muted)}
+.pay-row strong{color:var(--text);font-weight:600;text-align:right}
+.pay-row.total{border-top:1px dashed var(--border-strong);margin-top:.5rem;padding-top:1rem;font-size:1rem;color:var(--text);font-weight:600;align-items:center;}
+.pay-row.total strong{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.03em;color:var(--gold-soft);}
+
+.mpesa{background:linear-gradient(135deg,rgba(52,211,153,.08),rgba(255,255,255,.02));border:1px solid rgba(52,211,153,.25);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.4rem;}
+.mpesa h4{display:flex;align-items:center;gap:.55rem;font-size:.95rem;font-weight:600;margin-bottom:.9rem;color:var(--green);}
+.mpesa ol{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.6rem}
+.mpesa li{counter-increment:s;position:relative;padding-left:2rem;font-size:.88rem;color:var(--muted);line-height:1.5;}
+.mpesa li::before{content:counter(s);position:absolute;left:0;top:.05rem;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:700;background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.35);}
+.mpesa li b{color:var(--text);font-weight:600;letter-spacing:.04em}
+.mpesa .num{color:var(--gold-soft);font-weight:700;letter-spacing:.08em;font-size:.95rem}
+
+.support{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap;background:rgba(227,176,75,.07);border:1px solid rgba(227,176,75,.3);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1.4rem;}
+.support-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:0 0 42px;background:var(--gold-dim);border:1px solid rgba(227,176,75,.35);font-size:1.15rem;}
+.support-text{flex:1;min-width:180px}
+.support-text small{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.15rem;}
+.support-text a{font-size:1.05rem;font-weight:700;color:var(--gold-soft);letter-spacing:.05em;}
+.support-text a:hover{text-decoration:underline}
+.support .btn{flex:0 0 auto}
+
+/* ==== NEW: payment verification block ==== */
+.verify-block{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  margin-bottom:1.2rem;
+}
+.verify-block > label{
+  display:block;font-size:.82rem;font-weight:500;color:var(--muted);margin-bottom:.55rem;letter-spacing:.02em;
+}
+.verify-block > label .req{color:var(--gold)}
+.verify-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.verify-row input{
+  flex:1;min-width:180px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius-sm);
+  padding:.82rem 1rem;font-size:.94rem;color:var(--text);
+  letter-spacing:.18em;font-weight:700;text-transform:uppercase;
+  transition:border-color .25s,background .25s,box-shadow .25s;outline:none;
+}
+.verify-row input:focus{
+  border-color:var(--gold);background:rgba(255,255,255,.06);
+  box-shadow:0 0 0 4px rgba(227,176,75,.12);
+}
+.verify-row input.invalid{border-color:var(--red);box-shadow:0 0 0 4px rgba(248,113,113,.1)}
+.verify-row .btn{flex:0 0 auto}
+.verify-status{margin-top:.8rem;font-size:.86rem;line-height:1.5;min-height:0}
+.verify-status:empty{display:none}
+.verify-status.ok{
+  color:var(--green);background:rgba(52,211,153,.08);
+  border:1px solid rgba(52,211,153,.3);padding:.75rem .95rem;border-radius:10px;
+}
+.verify-status.fail{
+  color:var(--red);background:rgba(248,113,113,.08);
+  border:1px solid rgba(248,113,113,.3);padding:.75rem .95rem;border-radius:10px;
+}
+.lock-note{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.82rem;color:var(--muted);margin-bottom:1rem;
+  padding:.65rem .9rem;border-radius:10px;
+  background:rgba(255,255,255,.03);border:1px dashed var(--border-strong);
+}
+.lock-note.unlocked{color:var(--green);background:rgba(52,211,153,.06);border-color:rgba(52,211,153,.3);border-style:solid}
+
+.success{text-align:center;padding:1.5rem 0 1rem}
+.success .tick{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;margin:0 auto 1.5rem;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.4);font-size:2rem;color:var(--green);animation:pop .5s var(--ease);}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+.success h3{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;font-weight:400;letter-spacing:.03em;margin-bottom:.6rem;}
+.success p{color:var(--muted);font-size:.94rem;max-width:440px;margin:0 auto 1.4rem}
+.ref-box{display:inline-flex;flex-direction:column;gap:.25rem;background:rgba(255,255,255,.05);border:1px dashed var(--border-strong);border-radius:var(--radius-sm);padding:1rem 1.8rem;margin-bottom:1.6rem;}
+.ref-box span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.ref-box strong{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em;color:var(--gold-soft)}
+.success .support{margin:0 auto 1.4rem;max-width:420px;text-align:left}
+
+.spinner{width:17px;height:17px;border-radius:50%;border:2px solid rgba(26,18,5,.3);border-top-color:#1a1205;animation:spin .7s linear infinite;}
+.spinner.light{border-color:rgba(255,255,255,.25);border-top-color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.faq-list{max-width:780px;display:flex;flex-direction:column;gap:.7rem}
+details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 1.3rem;transition:border-color .3s,background .3s;}
+details[open]{border-color:rgba(227,176,75,.32);background:var(--surface-2)}
+summary{list-style:none;cursor:pointer;padding:1.15rem 0;font-weight:500;font-size:.96rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-size:1.35rem;color:var(--gold);font-weight:300;line-height:1;transition:transform .3s var(--ease);}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding-bottom:1.15rem;font-size:.9rem;color:var(--muted);line-height:1.65}
+details p b{color:var(--text)}
+details a{color:var(--gold-soft);text-decoration:underline}
+
+footer{border-top:1px solid var(--border);padding:3rem 0 2rem;margin-top:2rem;background:rgba(0,0,0,.28);}
+.footer-top{display:flex;flex-wrap:wrap;gap:2.4rem;justify-content:space-between;margin-bottom:2.4rem}
+.footer-brand{max-width:300px}
+.footer-brand p{font-size:.86rem;color:var(--muted);margin-top:.9rem}
+.footer-cols{display:flex;gap:3.5rem;flex-wrap:wrap}
+.footer-col h5{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:600;}
+.footer-col a,.footer-col p{display:block;font-size:.86rem;color:var(--muted);margin-bottom:.55rem;transition:color .25s}
+.footer-col a:hover{color:var(--gold-soft)}
+.footer-col .big-phone{font-size:1.05rem;font-weight:700;color:var(--gold-soft);letter-spacing:.05em;margin-bottom:.7rem;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.6rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.78rem;color:#6f6b80;}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .burger{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:.35rem;background:rgba(10,9,16,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 20px 1.4rem;display:none;}
+  .nav-links.open{display:flex}
+  .nav-links a:not(.btn){padding:.7rem .2rem;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-links a:not(.btn)::after{display:none}
+  .nav-cta{margin-top:.7rem;width:100%}
+  .grid-2{grid-template-columns:1fr}
+  .form-card{padding:1.6rem}
+  .step-label{display:none}
+  .stepper{gap:.2rem}
+  .section{padding:70px 0}
+  .hero{padding:130px 0 70px}
+}
+@media (max-width:560px){
+  .hero-stats{grid-template-columns:1fr 1fr;max-width:100%}
+  .stat:last-child{grid-column:span 2}
+  .hero-actions .btn{flex:1;min-width:150px}
+  .step-nav .btn{flex:1}
+  .footer-cols{gap:2rem}
+  .mpesa ol{gap:.75rem}
+  .support{align-items:flex-start}
+  .verify-row .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">M</span>
+      <span class="brand-text">Mallorcar<small>Narok</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#positions">Positions</a>
+      <a href="#faq">FAQ</a>
+      <a href="tel:+254759725070" class="btn btn-ghost btn-sm">📞 0759 725 070</a>
+      <a href="#apply" class="btn btn-gold btn-sm nav-cta">Apply Now</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="container hero-inner">
+      <span class="pill"><span class="dot"></span> Now hiring · Opening soon in Narok</span>
+      <h1>Join the crew behind <span class="gold">Mallorcar</span></h1>
+      <p class="lead">Narok's newest club is assembling its opening team. If you bring energy, discipline and a love for great service — we want to meet you.</p>
+      <div class="hero-actions">
+        <a href="#positions" class="btn btn-gold">View open positions</a>
+        <a href="#apply" class="btn btn-ghost">Start application</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>7</strong><span>Open roles</span></div>
+        <div class="stat"><strong>Narok</strong><span>Town centre</span></div>
+        <div class="stat"><strong>KES 500</strong><span>Application fee</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why Mallorcar</span>
+        <h2>A club built by its people</h2>
+        <p>We're not just hiring staff — we're building a team that Narok will talk about.</p>
+      </div>
+      <div class="about-grid">
+        <div class="feature reveal"><div class="ico">💰</div><h3>Fair pay, on time</h3><p>Competitive monthly salaries paid on schedule, plus tips shared transparently across the floor team.</p></div>
+        <div class="feature reveal"><div class="ico">📈</div><h3>Real growth</h3><p>Start on the floor, grow into a supervisor or shift lead. We promote from inside the team first.</p></div>
+        <div class="feature reveal"><div class="ico">🛡️</div><h3>Safe workplace</h3><p>A trained security team, clear house rules and a zero-tolerance policy on harassment.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="positions">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Open positions</span>
+        <h2>Pick your role</h2>
+        <p>Tap <b>Apply</b> on any role and we'll pre-fill it in your application form.</p>
+      </div>
+      <div class="pos-grid" id="posGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="apply">
+    <div class="container">
+      <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+        <span class="eyebrow">Application</span>
+        <h2>Apply for a position</h2>
+        <p>Takes about 4 minutes. Have your details and CV ready.</p>
+      </div>
+
+      <div class="apply-wrap">
+        <div class="form-card reveal">
+
+          <div class="fee-notice">
+            <span style="font-size:1.15rem;line-height:1">ℹ️</span>
+            <div>
+              <b>Application fee: KES 500 (one-time).</b>
+              Pay via <b>M-Pesa Send Money</b> to <b>0759 725 070</b>, then enter the
+              10-character transaction code from your M-Pesa SMS to unlock submission.
+              Shortlisted candidates are contacted within 7 working days.
+              Need help? Call or WhatsApp <a href="tel:+254759725070">0759 725 070</a>.
+            </div>
+          </div>
+
+          <div class="stepper" id="stepper">
+            <div class="step active" data-step="1"><span class="step-num">1</span><span class="step-label">Your details</span><span class="step-line"></span></div>
+            <div class="step" data-step="2"><span class="step-num">2</span><span class="step-label">Position</span><span class="step-line"></span></div>
+            <div class="step" data-step="3"><span class="step-num">3</span><span class="step-label">Payment</span><span class="step-line"></span></div>
+            <div class="step" data-step="4"><span class="step-num">4</span><span class="step-label">Done</span></div>
+          </div>
+
+          <form id="applyForm" novalidate>
+
+            <!-- STEP 1 -->
+            <div class="step-panel active" data-panel="1">
+              <div class="grid-2">
+                <div class="field"><label for="fullName">Full name <span class="req">*</span></label><input id="fullName" type="text" placeholder="e.g. Jane Wanjiru" autocomplete="name" required><span class="err"></span></div>
+                <div class="field"><label for="email">Email address <span class="req">*</span></label><input id="email" type="email" placeholder="you@example.com" autocomplete="email" required><span class="err"></span></div>
+              </div>
+              <div class="grid-2">
+                <div class="field"><label for="phone">Phone (M-Pesa number) <span class="req">*</span></label><input id="phone" type="tel" placeholder="0712 345 678" inputmode="tel" data-type="phone" required><span class="err"></span></div>
+                <div class="field"><label for="idNumber">National ID / Passport No. <span class="req">*</span></label><input id="idNumber" type="text" placeholder="e.g. 12345678" required><span class="err"></span></div>
+              </div>
+              <div class="field"><label for="location">Current location <span class="req">*</span></label><input id="location" type="text" placeholder="e.g. Narok Town, Kilgoris Road" required><span class="err"></span></div>
+              <div class="step-nav"><button type="button" class="btn btn-gold" data-next>Continue →</button></div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-panel" data-panel="2">
+              <div class="field"><label for="position">Position applying for <span class="req">*</span></label><select id="position" required><option value="">Select a position…</option></select><span class="err"></span></div>
+              <div class="grid-2">
+                <div class="field"><label for="experience">Years of experience <span class="req">*</span></label>
+                  <select id="experience" required><option value="">Select…</option><option>No experience (willing to train)</option><option>Less than 1 year</option><option>1 – 2 years</option><option>3 – 5 years</option><option>5+ years</option></select><span class="err"></span></div>
+                <div class="field"><label for="availability">Availability <span class="req">*</span></label>
+                  <select id="availability" required><option value="">Select…</option><option>Immediately</option><option>Within 2 weeks</option><option>Within 1 month</option><option>Night shifts only</option></select><span class="err"></span></div>
+              </div>
+              <div class="field"><label for="about">Why should we hire you? <span class="req">*</span></label><textarea id="about" placeholder="Tell us briefly about your experience and what you'd bring to the team…" required></textarea><span class="err"></span></div>
+              <div class="field"><label for="cv">Attach CV (optional)</label>
+                <div class="file-drop" id="fileDrop"><input type="file" id="cv" accept=".pdf,.doc,.docx"><span id="fileLabel">📎 <strong>Click to upload</strong> or drag your CV here — PDF or DOC, max 5MB</span></div>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="btn btn-ghost" data-prev>← Back</button>
+                <button type="button" class="btn btn-gold" data-next>Continue →</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 — PAYMENT (now requires verified transaction code) -->
+            <div class="step-panel" data-panel="3">
+              <div class="pay-box">
+                <div class="pay-row"><span>Applicant</span><strong id="payName">—</strong></div>
+                <div class="pay-row"><span>Position</span><strong id="payPosition">—</strong></div>
+                <div class="pay-row"><span>Your phone</span><strong id="payPhone">—</strong></div>
+                <div class="pay-row"><span>Pay to (M-Pesa)</span><strong class="gold">0759 725 070</strong></div>
+                <div class="pay-row total"><span>Total payable</span><strong>KES 500</strong></div>
+              </div>
+
+              <div class="mpesa">
+                <h4>📱 Pay with M-Pesa (Send Money)</h4>
+                <ol>
+                  <li>Open <b>M-Pesa</b> on your phone</li>
+                  <li>Select <b>Send Money</b></li>
+                  <li>Enter number: <b class="num">0759 725 070</b></li>
+                  <li>Amount: <b>KES 500</b></li>
+                  <li>Enter your M-Pesa PIN and confirm</li>
+                  <li>You'll receive an SMS with a <b>10-character code</b> — keep it</li>
+                </ol>
+              </div>
+
+              <div class="support">
+                <div class="support-ico">💬</div>
+                <div class="support-text"><small>Payment &amp; support line</small><a href="tel:+254759725070">0759 725 070</a></div>
+                <a href="https://wa.me/254759725070" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">WhatsApp</a>
+              </div>
+
+              <!-- Verification block -->
+              <div class="verify-block">
+                <label for="txCode">Enter the M-Pesa transaction code <span class="req">*</span></label>
+                <div class="verify-row">
+                  <input id="txCode" type="text" placeholder="SJ12ABC34D" maxlength="10" autocomplete="off" spellcheck="false" inputmode="text">
+                  <button type="button" id="verifyBtn" class="btn btn-gold btn-sm">Verify payment</button>
+                </div>
+                <span class="err" id="txErr"></span>
+                <div id="verifyStatus" class="verify-status"></div>
+              </div>
+
+              <div class="lock-note" id="lockNote">
+                🔒 Submission is locked until your payment is verified.
+              </div>
+
+              <div class="step-nav">
+                <button type="button" class="btn btn-ghost" data-prev>← Back</button>
+                <button type="button" class="btn btn-gold" id="payBtn" disabled>Confirm &amp; submit</button>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-panel" data-panel="4">
+              <div class="success">
+                <div class="tick">✓</div>
+                <h3>Application received!</h3>
+                <p>Thank you, <strong id="successName" class="gold">there</strong>. Your application for <strong id="successRole" class="gold">the role</strong> has been submitted successfully. Keep this reference number safe.</p>
+                <div class="ref-box"><span>Reference number</span><strong id="refNumber">MAL-00000</strong></div>
+                <p style="font-size:.84rem">Our hiring team will review your application and contact shortlisted candidates within <b>7 working days</b>.</p>
+                <div class="support">
+                  <div class="support-ico">💬</div>
+                  <div class="support-text"><small>Questions? Support line</small><a href="tel:+254759725070">0759 725 070</a></div>
+                  <a href="https://wa.me/254759725070" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">WhatsApp</a>
+                </div>
+                <a href="#home" class="btn btn-ghost btn-sm">Back to top</a>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Good to know</h2></div>
+      <div class="faq-list">
+        <details class="reveal" open>
+          <summary>Why is there an application fee?</summary>
+          <p>The KES 500 fee covers administrative processing, verification of your details and interview scheduling. It is a one-time fee per application and is non-refundable once your application has been submitted.</p>
+        </details>
+        <details class="reveal">
+          <summary>How do I pay the application fee?</summary>
+          <p>Use <b>M-Pesa → Send Money</b> and send <b>KES 500</b> to <b>0759 725 070</b>. You'll receive an SMS with a <b>10-character transaction code</b> (e.g. SJ12ABC34D). Enter that code on the payment step to unlock submission. If you have any problem, call or WhatsApp <a href="tel:+254759725070">0759 725 070</a>.</p>
+        </details>
+        <details class="reveal">
+          <summary>My transaction code was rejected — what do I do?</summary>
+          <p>Double-check the code matches your M-Pesa SMS exactly (10 characters, letters and numbers). If you just paid, wait 1–2 minutes and try again. If it still fails, call or WhatsApp <a href="tel:+254759725070">0759 725 070</a> with your M-Pesa message and we'll verify manually.</p>
+        </details>
+        <details class="reveal">
+          <summary>Is the fee refundable if I'm not shortlisted?</summary>
+          <p>No. The fee pays for processing your application regardless of the outcome. Only pay if you're comfortable with this. We clearly display the fee before you pay — there are no hidden charges.</p>
+        </details>
+        <details class="reveal">
+          <summary>How will I know my application went through?</summary>
+          <p>You'll receive a reference number on screen immediately after payment verification. Shortlisted candidates are contacted by phone or email within 7 working days. For follow-up, call <a href="tel:+254759725070">0759 725 070</a>.</p>
+        </details>
+        <details class="reveal">
+          <summary>Do I need experience to apply?</summary>
+          <p>Not for every role. Barback, housekeeping, butcher assistant and service assistant roles include training. Butcher, bartender, security and DJ positions require relevant experience.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="brand"><span class="brand-mark">M</span><span class="brand-text">Mallorcar<small>Narok</small></span></a>
+        <p>Narok's newest nightlife destination. Opening soon — and we're hiring the team that will make it happen.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h5>Careers</h5><a href="#positions">Open positions</a><a href="#apply">Apply now</a><a href="#faq">FAQ</a></div>
+        <div class="footer-col"><h5>Support &amp; Payments</h5><a href="tel:+254759725070" class="big-phone">0759 725 070</a><a href="https://wa.me/254759725070" target="_blank" rel="noopener">WhatsApp us</a><p>M-Pesa Send Money: 0759 725 070</p></div>
+        <div class="footer-col"><h5>Location &amp; Hours</h5><p>Narok Town, Narok County</p><p>Mon – Fri: 9:00 – 17:00</p><p>Sat: 10:00 – 14:00</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Mallorcar Club, Narok. All rights reserved.</span>
+      <span>Application fee KES 500 · Pay to 0759 725 070 · Non-refundable</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  const POSITIONS = [
+    { id:'bartender', title:'Bartender', dept:'Bar', type:'Full-time', pay:'KES 28,000 – 35,000 / mo', desc:'Craft cocktails, manage the bar station and keep service fast, clean and friendly all night.' },
+    { id:'waiter', title:'Waiter / Waitress', dept:'Service', type:'Full-time', pay:'KES 22,000 – 28,000 / mo', desc:'Take orders, serve guests and make sure every table feels genuinely looked after.' },
+    { id:'butcher', title:'Butcher', dept:'Kitchen', type:'Full-time', pay:'KES 25,000 – 32,000 / mo', desc:'Prepare and portion meat for the kitchen and grill section, maintain top hygiene standards and manage stock rotation.' },
+    { id:'security', title:'Security Officer', dept:'Safety', type:'Night shift', pay:'KES 25,000 – 30,000 / mo', desc:'Control entry, keep the venue safe and manage crowd flow calmly and professionally.' },
+    { id:'dj', title:'Resident DJ', dept:'Entertainment', type:'Contract', pay:'Negotiable + tips', desc:'Own the dancefloor with a set that keeps Narok moving from the first drop to close.' },
+    { id:'cashier', title:'Cashier', dept:'Front Office', type:'Full-time', pay:'KES 24,000 – 30,000 / mo', desc:'Handle payments, reconcile tills and keep daily records accurate and tidy.' },
+    { id:'housekeeping', title:'Housekeeping', dept:'Operations', type:'Full-time', pay:'KES 18,000 – 22,000 / mo', desc:'Keep the club spotless before, during and after service — the backbone of a good night.' }
+  ];
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  /* ---------- NAV ---------- */
+  const nav = $('#nav'), burger = $('#burger'), navLinks = $('#navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- RENDER POSITIONS ---------- */
+  const posGrid = $('#posGrid'), posSelect = $('#position');
+  POSITIONS.forEach(p => {
+    const card = document.createElement('article');
+    card.className = 'pos-card reveal';
+    card.innerHTML = `
+      <div class="pos-top"><h3>${p.title}</h3><span class="tag">${p.type}</span></div>
+      <p>${p.desc}</p>
+      <div class="pos-meta"><span>${p.dept}</span><span>${p.pay}</span></div>
+      <button type="button" class="btn btn-gold btn-sm" data-apply="${p.id}">Apply for this role</button>
+    `;
+    posGrid.appendChild(card);
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = `${p.title} — ${p.dept}`;
+    posSelect.appendChild(opt);
+  });
+
+  /* ---------- STEPPER ---------- */
+  const form = $('#applyForm');
+  const panels = $$('.step-panel');
+  const steps = $$('.step');
+  const formCard = $('.form-card');
+  let currentStep = 1;
+
+  function goTo(step){
+    currentStep = step;
+    panels.forEach(p => p.classList.toggle('active', Number(p.dataset.panel) === step));
+    steps.forEach(s => {
+      const n = Number(s.dataset.step);
+      s.classList.toggle('active', n === step);
+      s.classList.toggle('done', n < step);
+    });
+    const y = formCard.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+    if (step === 3) fillPaymentSummary();
+  }
+
+  function setError(field, msg){
+    const err = field.closest('.field')?.querySelector('.err');
+    field.classList.add('invalid');
+    if (err) err.textContent = msg;
+  }
+  function clearError(field){
+    const err = field.closest('.field')?.querySelector('.err');
+    field.classList.remove('invalid');
+    if (err) err.textContent = '';
+  }
+
+  function validatePanel(panel){
+    let ok = true;
+    panel.querySelectorAll('[required]').forEach(field => {
+      const value = (field.value || '').trim();
+      let valid = value.length > 0;
+      let msg = 'This field is required';
+      if (valid && field.type === 'email') {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+        msg = 'Enter a valid email address';
+      }
+      if (valid && field.dataset.type === 'phone') {
+        const cleaned = value.replace(/[\s\-()]/g, '');
+        valid = /^(?:\+254|254|0)[17]\d{8}$/.test(cleaned);
+        msg = 'Enter a valid Kenyan number e.g. 0712345678';
+      }
+      if (valid && field.id === 'about') {
+        valid = value.length >= 20;
+        msg = 'Please write at least 20 characters';
+      }
+      if (!valid) { setError(field, msg); ok = false; } else clearError(field);
+    });
+    return ok;
+  }
+
+  form.addEventListener('input', e => {
+    if (e.target.matches('input, select, textarea')) clearError(e.target);
+  });
+
+  form.addEventListener('click', e => {
+    const next = e.target.closest('[data-next]');
+    const prev = e.target.closest('[data-prev]');
+    if (next) {
+      const panel = next.closest('.step-panel');
+      if (validatePanel(panel)) goTo(currentStep + 1);
+      return;
+    }
+    if (prev) goTo(currentStep - 1);
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-apply]');
+    if (!btn) return;
+    posSelect.value = btn.dataset.apply;
+    clearError(posSelect);
+    goTo(1);
+    setTimeout(() => $('#fullName').focus({ preventScroll:true }), 500);
+  });
+
+  const cvInput = $('#cv'), fileLabel = $('#fileLabel');
+  cvInput.addEventListener('change', () => {
+    if (cvInput.files.length) {
+      const f = cvInput.files[0];
+      const kb = Math.round(f.size / 1024);
+      fileLabel.innerHTML = `✅ <strong>${f.name}</strong> — ${kb} KB`;
+    } else {
+      fileLabel.innerHTML = `📎 <strong>Click to upload</strong> or drag your CV here — PDF or DOC, max 5MB`;
+    }
+  });
+
+  /* ============================================================
+     PAYMENT VERIFICATION — the real gate
+  ============================================================ */
+  const payBtn       = $('#payBtn');
+  const txInput      = $('#txCode');
+  const verifyBtn    = $('#verifyBtn');
+  const verifyStatus = $('#verifyStatus');
+  const txErr        = $('#txErr');
+  const lockNote     = $('#lockNote');
+
+  let paymentVerified = false;
+  let verifiedCode    = '';
+
+  function fillPaymentSummary(){
+    const pos = POSITIONS.find(p => p.id === posSelect.value);
+    $('#payName').textContent     = $('#fullName').value.trim() || '—';
+    $('#payPosition').textContent = pos ? pos.title : '—';
+    $('#payPhone').textContent    = $('#phone').value.trim() || '—';
+  }
+
+  function setVerified(code){
+    paymentVerified = true;
+    verifiedCode = code;
+    verifyStatus.className = 'verify-status ok';
+    verifyStatus.innerHTML = `✓ Payment verified — KES 500 received. Code: <b>${code}</b>`;
+    payBtn.disabled = false;
+    lockNote.classList.add('unlocked');
+    lockNote.innerHTML = '🔓 Payment verified. You can now submit your application.';
+  }
+
+  function resetVerification(){
+    paymentVerified = false;
+    verifiedCode = '';
+    payBtn.disabled = true;
+    verifyStatus.className = 'verify-status';
+    verifyStatus.textContent = '';
+    lockNote.classList.remove('unlocked');
+    lockNote.innerHTML = '🔒 Submission is locked until your payment is verified.';
+  }
+
+  function showVerifyError(msg){
+    resetVerification();
+    verifyStatus.className = 'verify-status fail';
+    verifyStatus.textContent = msg;
+    txInput.classList.add('invalid');
+  }
+
+  // Reset verification if user edits the code
+  txInput.addEventListener('input', () => {
+    const val = txInput.value.trim().toUpperCase();
+    txInput.value = val;
+    txErr.textContent = '';
+    txInput.classList.remove('invalid');
+    if (paymentVerified && val !== verifiedCode) resetVerification();
+  });
+
+  verifyBtn.addEventListener('click', async () => {
+    const code = txInput.value.trim().toUpperCase();
+
+    // 1. Format check
+    if (!/^[A-Z0-9]{10}$/.test(code)) {
+      txInput.classList.add('invalid');
+      txErr.textContent = 'Enter the 10-character code from your M-Pesa SMS (e.g. SJ12ABC34D).';
+      return;
+    }
+
+    // 2. Call backend
+    verifyBtn.disabled = true;
+    verifyBtn.innerHTML = '<span class="spinner light" style="width:14px;height:14px"></span> Verifying…';
+    verifyStatus.className = 'verify-status';
+    verifyStatus.textContent = '';
+    txErr.textContent = '';
+    txInput.classList.remove('invalid');
+
+    try {
+      const res = await fetch('/api/verify-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          transactionCode: code,
+          phone: $('#phone').value.trim(),
+          position: posSelect.value
+        })
+      });
+
+      // Backend not deployed on this domain
+      if (res.status === 404 || res.status === 405) {
+        showVerifyError('Payment verification is not configured on this site. Please call or WhatsApp 0759 725 070.');
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+
+      if (data && data.verified) {
+        setVerified(data.code || code);
+      } else {
+        showVerifyError(data.reason || 'We could not verify this transaction. Check the code and try again.');
+      }
+    } catch (err) {
+      showVerifyError('Network error. Check your connection and try again, or call 0759 725 070.');
+    } finally {
+      verifyBtn.disabled = false;
+      verifyBtn.textContent = 'Verify payment';
+    }
+  });
+
+  // Final submission — only possible if verified
+  payBtn.addEventListener('click', () => {
+    if (!paymentVerified) return; // hard stop
+
+    payBtn.disabled = true;
+    const original = payBtn.innerHTML;
+    payBtn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+    // Optional next step: POST the full application to /api/submit-application here.
+    setTimeout(() => {
+      const ref = 'MAL-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+      const firstName = $('#fullName').value.trim().split(' ')[0] || 'there';
+      const pos = POSITIONS.find(p => p.id === posSelect.value);
+      $('#refNumber').textContent   = ref;
+      $('#successName').textContent = firstName;
+      $('#successRole').textContent = pos ? pos.title : 'the role';
+      payBtn.innerHTML = original;
+      goTo(4);
+    }, 1200);
+  });
+
+  /* ---------- REVEAL ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  $('#year').textContent = new Date().getFullYear();
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nextBtn = $('.step-panel.active [data-next]');
+    if (nextBtn) nextBtn.click();
+  });
+
+})();
+</script>
+</body>
+  </html>
